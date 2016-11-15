@@ -41,11 +41,11 @@ int sumBalance(Couple couple)
 };
 
 
-const Couple* bestClient(Couple* couples, int size, Banks bank)
+const Couple* bestClient(const Couple* couples, int size, Banks bank)
 {
 	int biggestBalance = 0;
 
-	Couple* bestClients = nullptr;
+	const Couple* bestClients = nullptr;
 
 	for (int i = 0; i < size; i++)
 	{

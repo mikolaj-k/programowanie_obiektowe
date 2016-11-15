@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "04_opornik", "04_opornik\04
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "04_stos", "04_stos\04_stos.vcxproj", "{B416BFF0-E16E-4D63-AA43-58F782CB5119}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01_plaszczyzna", "01_plaszczyzna\01_plaszczyzna.vcxproj", "{4FA0475F-9739-480B-8592-B7D4245F352B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,14 @@ Global
 		{B416BFF0-E16E-4D63-AA43-58F782CB5119}.Release|x64.Build.0 = Release|x64
 		{B416BFF0-E16E-4D63-AA43-58F782CB5119}.Release|x86.ActiveCfg = Release|Win32
 		{B416BFF0-E16E-4D63-AA43-58F782CB5119}.Release|x86.Build.0 = Release|Win32
+		{4FA0475F-9739-480B-8592-B7D4245F352B}.Debug|x64.ActiveCfg = Debug|x64
+		{4FA0475F-9739-480B-8592-B7D4245F352B}.Debug|x64.Build.0 = Debug|x64
+		{4FA0475F-9739-480B-8592-B7D4245F352B}.Debug|x86.ActiveCfg = Debug|Win32
+		{4FA0475F-9739-480B-8592-B7D4245F352B}.Debug|x86.Build.0 = Debug|Win32
+		{4FA0475F-9739-480B-8592-B7D4245F352B}.Release|x64.ActiveCfg = Release|x64
+		{4FA0475F-9739-480B-8592-B7D4245F352B}.Release|x64.Build.0 = Release|x64
+		{4FA0475F-9739-480B-8592-B7D4245F352B}.Release|x86.ActiveCfg = Release|Win32
+		{4FA0475F-9739-480B-8592-B7D4245F352B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

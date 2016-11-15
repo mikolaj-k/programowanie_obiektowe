@@ -128,7 +128,32 @@ public:
 		return *this;
 	}
 
-	void info() const
+	static Frac add(const Frac& f1, const Frac& f2)
+	{
+		//TODO
+	};
+
+	Frac& mul(const Frac& f)
+	{
+		//TODO
+	};
+
+	Frac& div(const Frac& f)
+	{
+		//TODO
+	};
+
+	static Frac& div(const Frac& f1, const Frac& f2)
+	{
+		//TODO
+	};
+
+	static Frac& sub(const Frac& f1, const Frac& f2)
+	{
+		//TODO
+	};
+
+	void show() const
 	{
 		cout << _licz << "/" << _mian << endl;
 	}
@@ -149,18 +174,13 @@ int main()
 	test1.info();
 
 	cout << endl << "***********************ULAMKI***********************" << endl;
+	// 2 * ( (2 + 4/10)*5 - 4 ) / (24/15) = 10
+	Frac f1 = Frac(2).mul(Frac::sub(Frac(5).mul(Frac::add(Frac(2), Frac(4, 10))), Frac(4))).div(Frac(24, 15));
 
-	Frac testFract = Frac(6, -10);
-	testFract.info();
-
-	Frac testFract1 = Frac(3);
-	testFract1.info();
-
-	Frac testFract2 = Frac();
-	testFract2.info();
-
-	testFract2 = testFract.add(testFract1);
-	testFract2.info();
+	// 7 - 1/3 + (2/6 * 1114) / 111
+	Frac f2 = Frac(7);//.sub(Frac(1, 3));//.add(Frac::div(Frac(2, 6).mul(Frac(1114)), Frac(111)));
+	f1.show(); std::cout << " ";
+	f2.show(); std::cout << std::endl;
 
 
 	return 0;
