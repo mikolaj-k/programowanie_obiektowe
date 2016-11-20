@@ -33,14 +33,26 @@ void printRect(const Rect& r)
 
 bool doIntersect(const Rect* r1, const Rect* r2)
 {
-	//TODO
-	return true;
+	if ((r1->UR.x < r2->LL.x) && (r1->UR.y < r2->LL.y))
+		return true;
+
+	if ((r1->UR.x > r2->LL.x) && (r1->UR.y > r2->LL.y))
+		return true;
+
+	if ((r2->UR.x < r1->LL.x) && (r2->UR.y < r1->LL.y))
+		return true;
+
+	return false;
 };
 
 Rect intersection(const Rect& r1, const Rect& r2)
 {
-	//TODO
-	return r1;
+	if (doIntersect(&r1, &r2))
+		//TODO
+		return r1;
+
+	else
+		throw "Error in 'intersection'";
 };
 
 int main()
@@ -70,6 +82,8 @@ int main()
 	printRect(intersection(rc, rd));
 	cout << "ra & rd: ";
 	printRect(intersection(ra, rd));
+
+	system("pause");
 
 	return 0;
 }
