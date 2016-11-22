@@ -59,7 +59,7 @@ public:
 class Frac
 {
 private:
-	int _licz, _mian = 1;
+	int _licz = 0, _mian = 1;
 
 	int _nwd(int a, int b)
 	{
@@ -71,11 +71,9 @@ private:
 		return a;
 	}
 
-	//TODO walidacja
 public:
 	Frac()
 	{
-		_licz = 0;
 	}
 
 	Frac(int i)
@@ -85,6 +83,9 @@ public:
 
 	Frac(int licz, int mian)
 	{
+		_licz = licz;
+		_mian = mian;/*
+
 		if (licz < 0)
 		{
 			int nwdInt = this->_nwd(-licz, mian);
@@ -100,9 +101,9 @@ public:
 		}
 		else if (mian == 0)
 		{
-			cout << "Nope" << endl;
+			throw "Error in constructor";
 		}
-		else if (licz == 0) // TODO walidacjê w oddzielnej klasie prywatnej
+		else if (licz == 0)
 		{
 			_licz = licz;
 			_mian = 1;
@@ -112,7 +113,7 @@ public:
 			int nwdInt = this->_nwd(licz, mian);
 			_licz = licz / nwdInt;
 			_mian = mian / nwdInt;
-		}
+		}*/
 	}
 
 	Frac& add(const Frac& f)
@@ -130,27 +131,47 @@ public:
 
 	static Frac add(const Frac& f1, const Frac& f2)
 	{
-		//TODO
+		if (f1._licz == f2._licz)
+		{
+			return Frac(f1._licz + f2._licz, f1._mian);
+		}
+		else
+		{
+			return Frac((f1._licz * f2._mian) + (f2._licz * f1._mian), f1._mian * f2._mian);
+		}
 	};
 
 	Frac& mul(const Frac& f)
 	{
-		//TODO
+		this->_licz *= f._licz;
+		this->_mian *= f._mian;
+
+		return *this;
 	};
 
 	Frac& div(const Frac& f)
 	{
-		//TODO
+		this->_licz *= f._mian;
+		this->_mian *= f._licz;
+
+		return *this;
 	};
 
 	static Frac& div(const Frac& f1, const Frac& f2)
 	{
-		//TODO
+		return Frac(f1._licz*f2._mian, f1._mian*f2._licz);
 	};
 
 	static Frac& sub(const Frac& f1, const Frac& f2)
 	{
-		//TODO
+		if (f1._licz == f2._licz)
+		{
+			return Frac(f1._licz - f2._licz, f1._mian);
+		}
+		else
+		{
+			return Frac((f1._licz * f2._mian) - (f2._licz * f1._mian), f1._mian * f2._mian);
+		}
 	};
 
 	void show() const
@@ -174,14 +195,25 @@ int main()
 	test1.info();
 
 	cout << endl << "***********************ULAMKI***********************" << endl;
+
 	// 2 * ( (2 + 4/10)*5 - 4 ) / (24/15) = 10
-	Frac f1 = Frac(2).mul(Frac::sub(Frac(5).mul(Frac::add(Frac(2), Frac(4, 10))), Frac(4))).div(Frac(24, 15));
+	//Frac f1 = Frac();
+
+	////TODO coœ nie hula po dodaniu 2 *(...)
+
+	//f1 = Frac(2).mul(Frac::sub(Frac(5).mul(Frac(2).add(Frac(4, 10))), Frac(4)));
+
+	//f1.show();
+
+
+	/*Frac f2 = Frac(2).mul(;
+	f2.show();*/
 
 	// 7 - 1/3 + (2/6 * 1114) / 111
-	Frac f2 = Frac(7);//.sub(Frac(1, 3));//.add(Frac::div(Frac(2, 6).mul(Frac(1114)), Frac(111)));
-	f1.show(); std::cout << " ";
-	f2.show(); std::cout << std::endl;
+	//Frac f2 = Frac(7).sub(Frac(1, 3)).add(Frac::div(Frac(2, 6).mul(Frac(1114)), Frac(111)));
+	//f2.show(); std::cout << std::endl;
 
+	system("pause");
 
 	return 0;
 }
