@@ -1,49 +1,118 @@
-// 04_stos.cpp : Defines the entry point for the console application.
-//
-#include "stdafx.h"
+//TODO Implementacja na nowszym kompilatorze bo to jest gowno
 
 #include <cassert>           // assert
 #include <stdexcept>         // out_of_range
 #include <initializer_list>
 #include <cstring>           // memcpy; useful in the ctor
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
 class StackArr
 {
 private:
-	enum : size_t { SIZE = 8 };
-	int arr[SIZE];
-	size_t top;    // index of the first "free" location
+    enum : size_t {SIZE = 8};
+    int arr[SIZE];
+    size_t top;    // index of the first "free" location
+
 public:
-	//StackArr(initializer_list<int> lista) : arr(lista) {};
+    StackArr() : arr() {};
+    StackArr(initializer_list<int> lista)
+    {
+        copy(lista.begin(), lista.end(), arr);
+        top = lista.size() - 1 ;
+    }
+
+    size_t getTop()
+    {
+        return top+1;
+    }
+
+    void push(int e)
+    {
+        arr[++top] = e;
+    }
+
+    int pop()
+    {
+        return arr[--top];
+    }
+
+    int peek()
+    {
+        return arr[top];
+    }
+
+    bool empty() const
+    {
+        return !top;
+    }
+
+    bool full()
+    {
+        return (top == SIZE);
+    }
+
+    size_t avail()
+    {
+        return (SIZE - top);
+    }
+
+    operator bool() const
+    {
+        return !(this -> empty());
+    }
+
+    StackArr operator << (int e)
+    {
+        this -> push(e);
+    }
+
+//    int operator >> ()
+//    {
+//        return this -> pop();
+//    }
+
+    friend ostream & operator <<(ostream & s, const StackArr & lista)
+    {
+        s << "[ ";
+
+        for(int i = 0; i < lista.top; i++)
+        {
+            s << lista.arr[i] << " ";
+        }
+        s << "]";
+
+        return s;
+    }
 };
 
-int main() {
-	/*using std::cout; using std::endl;
+int main()
+{
+    StackArr stack({1,2,3,4,5});
 
-	StackArr stack(1, 2, 3, 4, 5);
-	stack << 6 << 7 << 8;
-	cout << stack << endl;
+    stack << 6 << 7 << 8;
+    cout << stack << endl;
 
-	int a, b, c;
-	stack >> c >> b >> a;
-	assert(b == 7);
-	assert(stack.peek() == 5);
-	while (stack.avail() > 0) {
-		stack.push(9);
-	}
-	assert(stack.full());
-	assert(!stack.empty());
-	while (stack.peek() > 3) {
-		cout << "pop:  " << stack.pop() << endl;
-	}
-	cout << "Removing the rest..." << endl;
-	while (stack) {
-		cout << "pop:  " << stack.pop() << endl;
-	}
-	assert(stack.empty());*/
+    int a, b, c;
+    //stack >> c >> b >> a;
+//    assert(b == 7);
+//    assert(stack.peek() == 5);
+    while (stack.avail() > 0)
+    {
+        stack.push(9);
+    }
+//    assert(stack.full());
+//    assert(!stack.empty());
+    while(stack.peek() > 3)
+    {
+        cout << "pop:  " << stack.pop() << endl;
+    }
+    cout << "Removing the rest..." << endl;
+    while (stack)
+    {
+        cout << "pop:  " << stack.pop() << endl;
+    }
+    assert(stack.empty());
 }
-
-
