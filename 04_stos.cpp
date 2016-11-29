@@ -1,5 +1,3 @@
-//TODO Implementacja na nowszym kompilatorze bo to jest gowno
-
 #include <cassert>           // assert
 #include <stdexcept>         // out_of_range
 #include <initializer_list>
@@ -21,12 +19,12 @@ public:
     StackArr(initializer_list<int> lista)
     {
         copy(lista.begin(), lista.end(), arr);
-        top = lista.size() - 1 ;
+        top = lista.size()-1;
     }
 
     size_t getTop()
     {
-        return top+1;
+        return top++;
     }
 
     void push(int e)
@@ -67,18 +65,20 @@ public:
     StackArr operator << (int e)
     {
         this -> push(e);
+        return *this;
     }
 
-//    int operator >> ()
-//    {
-//        return this -> pop();
-//    }
+    int operator >> (int a)
+    {
+        a = this -> pop();
+        return a;
+    }
 
     friend ostream & operator <<(ostream & s, const StackArr & lista)
     {
         s << "[ ";
 
-        for(int i = 0; i < lista.top; i++)
+        for(int i = 0; i < lista.top+1; i++)
         {
             s << lista.arr[i] << " ";
         }
@@ -91,28 +91,30 @@ public:
 int main()
 {
     StackArr stack({1,2,3,4,5});
-
-    stack << 6 << 7 << 8;
     cout << stack << endl;
 
-    int a, b, c;
-    //stack >> c >> b >> a;
+    stack << 6 << 7;
+
+    cout << stack << endl;
+//
+//    int a, b, c;
+//    stack >> c >> b >> a;
 //    assert(b == 7);
 //    assert(stack.peek() == 5);
-    while (stack.avail() > 0)
-    {
-        stack.push(9);
-    }
+//    while (stack.avail() > 0)
+//    {
+//        stack.push(9);
+//    }
 //    assert(stack.full());
 //    assert(!stack.empty());
-    while(stack.peek() > 3)
-    {
-        cout << "pop:  " << stack.pop() << endl;
-    }
-    cout << "Removing the rest..." << endl;
-    while (stack)
-    {
-        cout << "pop:  " << stack.pop() << endl;
-    }
-    assert(stack.empty());
+//    while(stack.peek() > 3)
+//    {
+//        cout << "pop:  " << stack.pop() << endl;
+//    }
+//    cout << "Removing the rest..." << endl;
+//    while (stack)
+//    {
+//        cout << "pop:  " << stack.pop() << endl;
+//    }
+//    assert(stack.empty());
 }
