@@ -29,7 +29,9 @@ public:
 
     void push(int e)
     {
+        cout << "push: " << e ;
         arr[++top] = e;
+        cout << " on " << top << endl;
     }
 
     int pop()
@@ -71,18 +73,16 @@ public:
     int operator >> (int a)
     {
         a = this -> pop();
+        cout << "pop: " << a << endl;
         return a;
     }
 
     friend ostream & operator <<(ostream & s, const StackArr & lista)
     {
-        s << "[ ";
-
         for(int i = 0; i < lista.top+1; i++)
         {
-            s << lista.arr[i] << " ";
+            s << i << ": " << lista.arr[i] << endl;
         }
-        s << "]";
 
         return s;
     }
@@ -93,12 +93,14 @@ int main()
     StackArr stack({1,2,3,4,5});
     cout << stack << endl;
 
-    stack << 6 << 7;
-
+    stack << 6;
     cout << stack << endl;
-//
-//    int a, b, c;
-//    stack >> c >> b >> a;
+
+    stack  << 7 << 8;
+    cout << stack << endl;
+
+    int a, b, c;
+    stack >> c >> b >> a;
 //    assert(b == 7);
 //    assert(stack.peek() == 5);
 //    while (stack.avail() > 0)
